@@ -86,9 +86,13 @@ fun TipTimeLayout()  {
     var roundUp by remember { mutableStateOf(false) }
     var amountInput by remember { mutableStateOf("") }
     var tipInput by remember { mutableStateOf("") }
+
     val amount = amountInput.toDoubleOrNull() ?: 0.0
     val tipPercent = tipInput.toDoubleOrNull() ?: 0.0
-    val tip = calculateTip(amount, tipPercent, roundUp)
+    val tip = calculateTip(amount,
+        tipPercent,
+        roundUp)
+
     Column(
         modifier = Modifier
             .padding(40.dp)
@@ -105,7 +109,8 @@ fun TipTimeLayout()  {
         EditNumberField(
             label = R.string.bill_amount,
             leadingIcon = R.drawable.money,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number, imeAction = ImeAction.Next),
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Next),
             value = amountInput,
             onValueChange = { amountInput = it },
             modifier = Modifier
@@ -115,7 +120,8 @@ fun TipTimeLayout()  {
         EditNumberField(
             label = R.string.how_was_the_service,
             leadingIcon = R.drawable.percent,
-            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number, imeAction = ImeAction.Done),
+            keyboardOptions = KeyboardOptions.Default.copy(keyboardType = KeyboardType.Number,
+                imeAction = ImeAction.Done),
             value = tipInput,
             onValueChange = { tipInput = it },
             modifier = Modifier
