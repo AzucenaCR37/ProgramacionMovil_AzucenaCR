@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -28,13 +29,15 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.cuadricula.model.Topic
+import com.example.cuadricula.data.DataSource
 import com.example.cuadricula.ui.theme.CuadriculaTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CoursesTheme {
+            CuadriculaTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),
@@ -45,20 +48,6 @@ class MainActivity : ComponentActivity() {
                     )
                 }
             }
-        }
-    }
-}
-
-@Composable
-fun TopicGrid(modifier: Modifier = Modifier) {
-    LazyVerticalGrid(
-        columns = GridCells.Fixed(2),
-        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
-        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
-        modifier = modifier
-    ) {
-        items(DataSource.topics) { topic ->
-            TopicCard(topic)
         }
     }
 }
@@ -107,10 +96,25 @@ fun TopicCard(topic: Topic, modifier: Modifier = Modifier) {
     }
 }
 
+
+@Composable
+fun TopicGrid(modifier: Modifier = Modifier) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        verticalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
+        horizontalArrangement = Arrangement.spacedBy(dimensionResource(R.dimen.padding_small)),
+        modifier = modifier
+    ) {
+        items(DataSource.topics) { topic ->
+            TopicCard(topic)
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 fun TopicPreview() {
-    CoursesTheme {
+    CuadriculaTheme {
         val topic = Topic(R.string.photography, 321, R.drawable.photography)
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -121,3 +125,4 @@ fun TopicPreview() {
         }
     }
 }
+
