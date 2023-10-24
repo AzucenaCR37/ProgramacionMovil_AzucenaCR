@@ -47,6 +47,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import com.example.reply.R
 import com.example.reply.data.Email
 import com.example.reply.data.local.LocalAccountsDataProvider
+import androidx.compose.ui.platform.LocalContext
 
 @Composable
 fun ReplyListOnlyContent(
@@ -114,7 +115,7 @@ fun ReplyListAndDetailContent(
         ReplyDetailsScreen(
             replyUiState = replyUiState,
             modifier = Modifier.weight(1f),
-            onBackPressed = {}
+            onBackPressed = { activity.finish() }
         )
     }
 }
